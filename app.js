@@ -1,6 +1,6 @@
 var apiKey = "AAavl15L60Lh1UlShhPgXf3KtttHxcXN";
 var counter = 0;
-var pageNumber = 0;
+var pageNumber = "";
 var keyword = "";
 var apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keyword
  + "&api-key=" + apiKey + "&page=" + pageNumber;
@@ -9,13 +9,23 @@ var apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + key
 
     $("#search").click(function(){
         keyword = $("#searchParm").val();
-        console.log(keyword);
-        callAjax();
+        pageNumber = parseInt($("#pages option:selected" ).text())/10;
+        console.log(keyword, pageNumber);
+        appendMultiple(pageNumber);
+        
     });
     $("#clear").click(function(){
         $("#word-blanks").empty();
     });
  });
+
+function appendMultiple(pn){
+    for(var i = 0 ; i < pn; i++){
+        console.log("I'm here", pageNumber, i);
+        pageNumber = i;
+        callAjax();
+    }
+}
 
  function callAjax(){
     apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keyword
