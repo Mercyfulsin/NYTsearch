@@ -1,7 +1,7 @@
 var apiKey = "AAavl15L60Lh1UlShhPgXf3KtttHxcXN";
 var counter = 0;
 var pageNumber = 0;
-var keyword = "programming";
+var keyword = "";
 var apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keyword
  + "&api-key=" + apiKey + "&page=" + pageNumber;
  var resultArray;
@@ -9,6 +9,7 @@ var apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + key
 
     $("#search").click(function(){
         keyword = $("#searchParm").val();
+        console.log(keyword);
         callAjax();
     });
     $("#clear").click(function(){
@@ -17,6 +18,8 @@ var apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + key
  });
 
  function callAjax(){
+    apiUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keyword
+    + "&api-key=" + apiKey + "&page=" + pageNumber;
     $.ajax({
         url: apiUrl,
         method:'GET'
